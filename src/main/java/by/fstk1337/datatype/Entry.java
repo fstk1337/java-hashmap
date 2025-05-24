@@ -3,14 +3,20 @@ package by.fstk1337.datatype;
 import java.util.Objects;
 
 public class Entry<K, V> {
+    private final int hash;
     private final K key;
     private V value;
     private Entry<K, V> next;
 
-    public Entry(K key, V value) {
+    public Entry(int hash, K key, V value, Entry<K, V> next) {
+        this.hash = hash;
         this.key = key;
         this.value = value;
-        next = null;
+        this.next = next;
+    }
+
+    public int getHash() {
+        return hash;
     }
 
     public K getKey() {
@@ -21,8 +27,10 @@ public class Entry<K, V> {
         return value;
     }
 
-    public void setValue(V value) {
+    public V setValue(V value) {
+        V oldValue = this.value;
         this.value = value;
+        return oldValue;
     }
 
     public boolean hasNext() {
@@ -48,7 +56,14 @@ public class Entry<K, V> {
     }
 
     @Override
+    public int hashCode() {
+        int keyHash = Objects.hashCode(key);
+        int valueHash = Objects.hashCode(value);
+        return keyHash ^ valueHash;
+    }
+
+    @Override
     public String toString() {
-        return (this.key + ": " + this.value);
+        return (this.hash + ": { " + this.key + ": " + this.value + " }, " + this.next);
     }
 }
