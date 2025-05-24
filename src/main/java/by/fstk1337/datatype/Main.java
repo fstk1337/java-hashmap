@@ -9,18 +9,22 @@ public class Main {
         map.put("Jamie", "The Unstoppable");
         map.put("Adam", "Goat 777");
         map.put("Jacky", "High jumper");
-
         System.out.println(map);
 
-        System.out.println(map.containsKey(null));
-        System.out.println(map.containsKey("Peter"));
-        System.out.println(map.containsKey("Jamie"));
-        System.out.println(map.containsKey("Howard"));
+        System.out.println(map.get(null));
+        System.out.println(map.get("Adam"));
+        System.out.println(map.get("Jamie"));
+        System.out.println(map.get("Rocky"));
 
-        System.out.println(map.containsValue(null));
-        System.out.println(map.containsValue("The Unstoppable"));
-        System.out.println(map.containsValue("Goat 777"));
-        System.out.println(map.containsValue("Very good"));
+        System.out.println(map.keySet());
+        System.out.println(map.values());
+        map.entrySet().forEach(System.out::println);
+
+        map.remove(null);
+        map.remove("Peter");
+        map.remove("Jamie");
+        map.remove("Christopher");
+        System.out.println(map);
 
         map.clear();
         System.out.println(map);

@@ -1,7 +1,6 @@
 package by.fstk1337.datatype;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 public class HashMap<K, V> {
     private static final int DEFAULT_CAPACITY = 16;
@@ -60,6 +59,45 @@ public class HashMap<K, V> {
             }
         }
         return false;
+    }
+
+    public Set<K> keySet() {
+        Set<K> keySet = new HashSet<>();
+        if (isEmpty() && Arrays.equals(hashTable, new Entry[capacity]))
+            return keySet;
+        for (Entry<K, V> entry: hashTable) {
+            while (Objects.nonNull(entry)) {
+                keySet.add(entry.getKey());
+                entry = entry.getNext();
+            }
+        }
+        return keySet;
+    }
+
+    public List<V> values() {
+        List<V> values = new ArrayList<>();
+        if (isEmpty() && Arrays.equals(hashTable, new Entry[capacity]))
+            return values;
+        for (Entry<K, V> entry: hashTable) {
+            while (Objects.nonNull(entry)) {
+                values.add(entry.getValue());
+                entry = entry.getNext();
+            }
+        }
+        return values;
+    }
+
+    public Set<Entry<K, V>> entrySet() {
+        Set<Entry<K, V>> entrySet = new HashSet<>();
+        if (isEmpty() && Arrays.equals(hashTable, new Entry[capacity]))
+            return entrySet;
+        for (Entry<K, V> entry: hashTable) {
+            while (Objects.nonNull(entry)) {
+                entrySet.add(entry);
+                entry = entry.getNext();
+            }
+        }
+        return entrySet;
     }
 
     public void clear() {

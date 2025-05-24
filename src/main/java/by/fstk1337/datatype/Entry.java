@@ -64,6 +64,6 @@ public class Entry<K, V> {
 
     @Override
     public String toString() {
-        return (this.hash + ": { " + this.key + ": " + this.value + " }, " + this.next);
+        return ("[" + this.hash + ": { " + this.key + ": " + this.value + " }, next: " + this.next + "]");
     }
 }
