@@ -32,6 +32,43 @@ public class HashMap<K, V> {
         return size == 0;
     }
 
+    public boolean containsKey(K key) {
+        if (Objects.isNull(key))
+            return false;
+        int index = index(key, capacity);
+        Entry<K, V> entry = hashTable[index];
+        if (Objects.isNull(entry)) {
+            return false;
+        }
+        while (Objects.nonNull(entry)) {
+            if (entry.getKey().equals(key)) {
+                return true;
+            }
+            entry = entry.getNext();
+        }
+        return false;
+    }
+
+    public boolean containsValue(V value) {
+        if (isEmpty() && Arrays.equals(hashTable, new Entry[capacity]))
+            return false;
+        for (Entry<K, V> entry: hashTable) {
+            while (Objects.nonNull(entry)) {
+                if (entry.getValue().equals(value))
+                    return true;
+                entry = entry.getNext();
+            }
+        }
+        return false;
+    }
+
+    public void clear() {
+        if (isEmpty() && Arrays.equals(hashTable, new Entry[capacity]))
+            return;
+        Arrays.fill(hashTable, null);
+        size = 0;
+    }
+
     public V get(K key) {
         if (Objects.isNull(key))
             return null;

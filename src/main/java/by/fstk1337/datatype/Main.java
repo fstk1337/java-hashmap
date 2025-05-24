@@ -11,11 +11,18 @@ public class Main {
         map.put("Jacky", "High jumper");
 
         System.out.println(map);
-        System.out.println(map.size());
 
-        System.out.println(map.remove("Jamie"));
-        System.out.println(map.remove("Peter"));
+        System.out.println(map.containsKey(null));
+        System.out.println(map.containsKey("Peter"));
+        System.out.println(map.containsKey("Jamie"));
+        System.out.println(map.containsKey("Howard"));
+
+        System.out.println(map.containsValue(null));
+        System.out.println(map.containsValue("The Unstoppable"));
+        System.out.println(map.containsValue("Goat 777"));
+        System.out.println(map.containsValue("Very good"));
+
+        map.clear();
         System.out.println(map);
-        System.out.println(map.size());
     }
 }
