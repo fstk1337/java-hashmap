@@ -73,6 +73,32 @@ public class HashMap<K, V> {
         return null;
     }
 
+    public V remove(K key) {
+        if (Objects.isNull(key))
+            return null;
+        int index = index(key, capacity);
+        Entry<K, V> entry = hashTable[index];
+        if (Objects.isNull(entry))
+            return null;
+        if (entry.getKey().equals(key)) {
+            hashTable[index] = entry.getNext();
+            entry.setNext(null);
+            size -= 1;
+            return entry.getValue();
+        }
+        while (entry.hasNext()) {
+            Entry<K, V> prevEntry = entry;
+            entry = entry.getNext();
+            if (entry.getKey().equals(key)) {
+                prevEntry.setNext(entry.getNext());
+                entry.setNext(null);
+                size -= 1;
+                return entry.getValue();
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return Arrays.toString(hashTable);
