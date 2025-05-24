@@ -32,7 +32,26 @@ public class HashMap<K, V> {
         return size == 0;
     }
 
+    public V get(K key) {
+        if (Objects.isNull(key))
+            return null;
+        int index = index(key, capacity);
+        Entry<K, V> entry = hashTable[index];
+        if (Objects.isNull(entry)) {
+            return null;
+        }
+        while (Objects.nonNull(entry)) {
+            if (entry.getKey().equals(key)) {
+                return entry.getValue();
+            }
+            entry = entry.getNext();
+        }
+        return null;
+    }
+
     public V put(K key, V value) {
+        if (Objects.isNull(key))
+            return null;
         int index = index(key, capacity);
         Entry<K, V> entry = hashTable[index];
         if (Objects.isNull(entry)) {
@@ -44,18 +63,12 @@ public class HashMap<K, V> {
                 if (entry.getKey().equals(key)) {
                     V oldValue = entry.getValue();
                     entry.setValue(value);
-                    size +=1;
                     return oldValue;
                 }
                 entry = entry.getNext();
             }
-            if (entry.getKey().equals(key)) {
-                V oldValue = entry.getValue();
-                entry.setValue(value);
-                size += 1;
-                return oldValue;
-            }
             entry.setNext(new Entry<>(index, key, value, null));
+            size +=1;
         }
         return null;
     }
