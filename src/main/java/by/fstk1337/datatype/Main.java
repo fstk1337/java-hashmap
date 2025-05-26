@@ -11,6 +11,11 @@ public class Main {
         map.put("Jacky", "High jumper");
         System.out.println(map);
 
+        System.out.println(map.containsValue("The Unstoppable"));
+        HashMap.Entry<String, String> entry1 = new HashMap.Entry<>(2, "Peter", null, null);
+        HashMap.Entry<String, String> entry2 = new HashMap.Entry<>(2, "Peter", null, null);
+        System.out.println(entry2.equals(entry1));
+
         System.out.println(map.get(null));
         System.out.println(map.get("Adam"));
         System.out.println(map.get("Jamie"));

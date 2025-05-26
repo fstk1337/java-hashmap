@@ -73,7 +73,7 @@ public class HashMap<K, V> {
             if (Objects.isNull(object) || object.getClass() != this.getClass())
                 return false;
             Entry<K, V> entry = (Entry<K, V>) object;
-            return entry.getKey().equals(this.getKey()) && entry.getValue().equals(this.getValue());
+            return entry.getKey().equals(this.getKey()) && Objects.nonNull(entry.getValue()) && entry.getValue().equals(this.getValue());
         }
 
         @Override
@@ -119,7 +119,7 @@ public class HashMap<K, V> {
             return false;
         for (Entry<K, V> entry: hashTable) {
             while (Objects.nonNull(entry)) {
-                if (entry.getValue().equals(value))
+                if (Objects.nonNull(entry.getValue()) && entry.getValue().equals(value))
                     return true;
                 entry = entry.getNext();
             }
