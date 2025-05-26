@@ -20,6 +20,10 @@ public class Main {
         System.out.println(map.values());
         map.entrySet().forEach(System.out::println);
 
+        map.put("Jacky", "Nullifier");
+        map.put("Jacky", "He's on fire");
+        System.out.println(map);
+
         map.remove(null);
         map.remove("Peter");
         map.remove("Jamie");

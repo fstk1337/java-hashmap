@@ -208,8 +208,14 @@ public class HashMap<K, V> {
                 }
                 entry = entry.getNext();
             }
-            entry.setNext(new Entry<>(index, key, value, null));
-            size +=1;
+            if (entry.getKey().equals(key)) {
+                V oldValue = entry.getValue();
+                entry.setValue(value);
+                return oldValue;
+            } else {
+                entry.setNext(new Entry<>(index, key, value, null));
+                size += 1;
+            }
         }
         return null;
     }
